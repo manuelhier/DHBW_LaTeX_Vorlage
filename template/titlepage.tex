@@ -1,0 +1,68 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 2020-06-20
+%% Descr:       Titelseite
+%% Author:      Vorlage erstellt von Daniel Spitzer an der DHBW Lörrach 
+%% Angepasst:   Katja Wengler, ZWI, DHBW Karlsruhe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+    \centering
+    \vspace*{-3cm}
+    
+    % Logo DHBW und ggf. Partnerunternehmen
+    \begin{figure}[h!]
+        \centering
+        % \vspace{1cm}
+        \includegraphics[width=6cm]{images/DHBW_logo.pdf}
+        \ifseminararbeit
+        \else
+            \hspace{1cm}
+            \includegraphics[width=6cm]{images/company_logo.pdf}
+        \fi
+        \vspace{0.5cm}
+    \end{figure}
+    
+    % Fakultät & Studiengang
+    % \vspace{0.5cm}
+    \large \textbf{Fakultät Wirtschaft} \\ 
+    \vspace{0.5cm}
+    \large \textbf{Studiengang \courseOfStudies} \\ 
+    
+    % Titel der Arbeit
+    \vfill  % \vspace{2.5cm}
+    \LARGE \textbf {\thesisTitle} \\
+    
+    % Modul & Prüfungstyp
+    \vfill  % \vspace{2.5cm}
+    \Large \textbf{\thesisType} \\
+    \ifseminararbeit
+    \Large im Modul \\
+    \textbf{\module} \\
+    \vspace{0.3cm}
+    \else
+    \vspace{1cm}
+    \fi
+    \normalsize Im Rahmen der Prüfung zum \degree \\
+    
+    % Sperrvermerk
+    \ifblockingnotice
+    \vfill
+    \Large \textcolor{red}{Sperrvermerk}\\
+    \fi
+    
+    % Informationen
+    \vfill
+    \normalsize
+    \begin{tabular}{l l}
+        \textbf{Verfasser:}  & \name \\
+        \textbf{Kurs:} & \course \\ 
+        \ifseminararbeit
+        \textbf{Dozentin:} & \universityAdvisor \\ 
+        \else 
+        \textbf{Partnerunternehmen:} & \company \\
+        \textbf{Betrieblicher Betreuer:} & \corporateAdvisor \\ 
+        \fi
+        \textbf{Abgabedatum:} & \submissionDate \\
+    \end{tabular}
+\end{titlepage}
+

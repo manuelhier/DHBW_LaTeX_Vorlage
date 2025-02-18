@@ -1,0 +1,87 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 2020-06-20
+%% Descr:       Hauptdatei für die Projektarbeit / Bachelorarbeit
+%% Author:      Vorlage erstellt von Daniel Spitzer an der DHBW Lörrach 
+%% Angepasst:   Katja Wengler, ZWI, DHBW Karlsruhe & Manuel Rettig, DHBW Karlsruhe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newif\ifblockingnotice
+\newif\ifseminararbeit
+
+\input{config/config}
+\input{config/preamble}
+
+\begin{document}
+
+    \pagenumbering{Roman}
+
+    \pagestyle{fancy}
+    \fancyhead{}
+    \fancyfoot{}
+    \fancyfoot[R]{\footer}
+
+    % DECKBLATT
+    \newgeometry{left=2.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot}
+    \input{template/titlepage}
+    \restoregeometry
+
+    % SELBSTSTÄNDIGKEITSERKLÄRUNG
+    \newpage
+    \thispagestyle{empty}
+    \input{template/declaration}
+
+    % SPERRVERMERK
+    \ifblockingnotice
+        \newpage
+        \thispagestyle{empty}
+        \input{template/blockingNotice}
+        \clearpage
+    \fi
+
+    % ABSTRACT
+    % \newpage
+    % \input{text/abstract}
+
+    % INHALTSVERZEICHNIS
+    \newpage
+    \tableofcontents
+
+    % ABKÜRZUNGSVERZEICHNIS
+    % \newpage
+    % \input{text/acronym}
+
+    % ABBILDUNGSVERZEICHNIS
+    % \newpage
+    % \listoffigures
+
+    % TABELLENVERZEICHNIS
+    % \newpage
+    % \listoftables
+
+    \clearpage \newpage
+    \setcounter{pageNumber}{\value{page}}
+    \pagenumbering{arabic}
+
+    \input{text/chapter1}
+    \newpage
+    \input{text/chapter2}
+    \newpage
+    \input{text/chapter3}
+    \newpage
+    \input{text/chapter4}
+    \newpage
+
+    \label{pagesForDeclaration}
+    \clearpage
+    \pagenumbering{Roman}
+    \setcounter{page}{\value{pageNumber}}
+
+    % LITERATURVERZEICHNIS
+    \addcontentsline{toc}{section}{\referenceHeading}
+    \printbibliography[title={\referenceHeading}]
+
+    % ANHANG          
+    % \newpage
+    % \input{text/appendix}
+
+\end{document}

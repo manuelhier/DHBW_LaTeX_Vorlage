@@ -1,0 +1,112 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 2020-06-20
+%% Descr:       Formale Einstellungen für die Praxisarbeit
+%% Author:      Vorlage erstellt von Daniel Spitzer an der DHBW Lörrach 
+%% Angepasst:   Katja Wengler, ZWI, DHBW Karlsruhe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt]{article}
+
+% Sprache & Darstellung
+\usepackage[english, ngerman]{babel} % Hier ggf. Sprache anpassen
+\usepackage{lmodern}
+
+% Babel Ersatz
+% \usepackage{polyglossia}
+% \setdefaultlanguage[spelling=new, babelshorthands=true]{german}
+
+% Schriftart Carlito, fast identisch mit Calibri. Calibri ist auf Linux und MacOS nicht verfügbar. 
+% \usepackage{carlito}
+% \setmainfont{carlito}
+
+% Andere Schriftarten
+% \usepackage{fontspec}
+% \setsansfont{Arial}
+% \setmonofont{Courier New}
+
+% Seitenränder Projekt bzw. Bachlorarbeit
+% \usepackage[left=2.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot]{geometry}
+
+% Seitenränder Links / Rechts Symmetrisch z.B. für Portfolio oder Assignments
+\usepackage[left=2.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot]{geometry}
+
+% Zeilenabstand: 1.5
+\usepackage{setspace}
+\setstretch{1.5}
+
+% Inhaltsverzeichnis
+\usepackage[nottoc]{tocbibind}
+\usepackage{parskip}
+
+% Abkürzungsverzeichnis
+\usepackage[nohyperlinks, withpage, smaller, printonlyused]{acronym}
+
+% Literaturverzeichnis
+\usepackage[backend=biber, style=apa, language=german, block=space, date=year]{biblatex}
+\addbibresource{literature/bibliography.bib}
+
+% Fuß und Kopfzeilen
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\def \footer{
+\begin{center}
+\hfill
+%\fontsize{\footerFontSize}{\footerFontSize}\selectfont\thesisFooterTitle
+\hfill
+\thepage
+\end{center}
+}
+
+% Positioniert die Fußnoten fest am unteren Ende der Seite
+\usepackage[hang, flushmargin, bottom, multiple]{footmisc}
+\renewcommand{\hangfootparindent}{0.5em}
+\renewcommand{\footnotelayout}{\hspace{0.5em}}
+
+% Tabellen & Abbildungen
+\usepackage{tabulary}
+\usepackage{tabularx}
+\usepackage{float}  % Positioniert Tabellen und Abbildungen
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage[labelfont=bf]{caption}
+\captionsetup{belowskip=0pt}
+%\captionsetup{belowskip=-9pt}
+
+% Aufzählungen
+\usepackage{enumitem}
+
+% Code-Blöcke
+\usepackage{minted}
+
+% Mathematik 
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+% Anführungszeichen mit \enquote{...}
+\usepackage{csquotes}
+
+% Das Paket hyperref muss als letztes Paket geladen werden. Das Paket setzt Links im PDF-Dokument.
+\usepackage[hidelinks, unicode]{hyperref}
+\hypersetup{pdftitle = {\thesisTitle}, pdfauthor = {\name}}
+
+% Normale Schriftart für URLs
+\renewcommand{\UrlFont}{}
+
+% Variable für das Speichern der Seitenzahl (römisch -> arabisch -> römisch)
+\newcounter{pageNumber}
+
+% Nummerierung: 2.1, 2.2 usw.
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+
+% Befehl für ein einleitendes Zitat
+\usepackage{csquotes}
+\newcommand{\epigraph}[2]{
+    \begin{quote}\begin{quote}
+        \begin{center}
+            \textit{#1}
+        \end{center}
+        \hfill #2
+    \end{quote}\end{quote}
+}
