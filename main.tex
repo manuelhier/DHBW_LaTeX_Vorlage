@@ -59,7 +59,6 @@
     % \listoftables
 
     \clearpage \newpage
-    \setcounter{pageNumber}{\value{page}}
     \pagenumbering{arabic}
 
     \input{text/chapter1}
@@ -73,8 +72,6 @@
 
     \label{pagesForDeclaration}
     \clearpage
-    \pagenumbering{Roman}
-    \setcounter{page}{\value{pageNumber}}
 
     % LITERATURVERZEICHNIS
     \addcontentsline{toc}{section}{\referenceHeading}
