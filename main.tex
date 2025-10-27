@@ -1,10 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 2020-06-20
-%% Descr:       Hauptdatei für die Projektarbeit / Bachelorarbeit
-%% Author:      Vorlage erstellt von Daniel Spitzer an der DHBW Lörrach 
-%% Angepasst:   Katja Wengler, ZWI, DHBW Karlsruhe & Manuel Rettig, DHBW Karlsruhe
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \newif\ifblockingnotice
 \newif\ifseminararbeit
 
@@ -13,72 +6,58 @@
 
 \begin{document}
 
-    \pagenumbering{Roman}
+\pagestyle{empty}
 
-    \pagestyle{fancy}
-    \fancyhead{}
-    \fancyfoot{}
-    \fancyfoot[R]{\footer}
+% % DECKBLATT
+\include{config/titlepage}
 
-    % DECKBLATT
-    \newgeometry{left=2.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot}
-    \input{template/titlepage}
-    \restoregeometry
+% % SELBSTSTÄNDIGKEITSERKLÄRUNG
+% \include{config/declaration}
 
-    % SELBSTSTÄNDIGKEITSERKLÄRUNG
-    \newpage
-    \thispagestyle{empty}
-    \input{template/declaration}
+% SPERRVERMERK
+\ifblockingnotice
+    \include{config/blockingNotice}
+\fi
 
-    % SPERRVERMERK
-    \ifblockingnotice
-        \newpage
-        \thispagestyle{empty}
-        \input{template/blockingNotice}
-        \clearpage
-    \fi
+% ABSTRACT
+% \include{text/abstract}
 
-    % ABSTRACT
-    % \newpage
-    % \input{text/abstract}
+% INHALTSVERZEICHNIS
+\newpage
+\tableofcontents
+\clearpage
 
-    % INHALTSVERZEICHNIS
-    \newpage
-    \tableofcontents
+\pagestyle{fancy}
+\pagenumbering{Roman}
 
-    % ABKÜRZUNGSVERZEICHNIS
-    % \newpage
-    % \input{text/acronym}
+% ABKÜRZUNGSVERZEICHNIS
+\newpage
+\printacronyms[sort=true]
+\clearpage
 
-    % ABBILDUNGSVERZEICHNIS
-    % \newpage
-    % \listoffigures
+% ABBILDUNGSVERZEICHNIS
+\newpage
+\listoffigures
+\clearpage
 
-    % TABELLENVERZEICHNIS
-    % \newpage
-    % \listoftables
+% TABELLENVERZEICHNIS
+\newpage
+\listoftables
+\clearpage
 
-    \clearpage \newpage
-    \pagenumbering{arabic}
+\pagenumbering{arabic}
 
-    \input{text/chapter1}
-    \newpage
-    \input{text/chapter2}
-    \newpage
-    \input{text/chapter3}
-    \newpage
-    \input{text/chapter4}
-    \newpage
+\include{text/01-chapter}
+\include{text/02-chapter}
+\include{text/03-chapter}
+\include{text/04-chapter}
 
-    \label{pagesForDeclaration}
-    \clearpage
+% ANHANG          
+\include{text/apendix.tex}
 
-    % LITERATURVERZEICHNIS
-    \addcontentsline{toc}{section}{\referenceHeading}
-    \printbibliography[title={\referenceHeading}]
-
-    % ANHANG          
-    % \newpage
-    % \input{text/appendix}
+% LITERATURVERZEICHNIS
+\newpage
+\printbibliography[heading=bibintoc, title={\referenceHeading}]
+\clearpage
 
 \end{document}

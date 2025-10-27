@@ -1,34 +1,33 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 2020-06-20
 %% Descr:       Formale Einstellungen für die Praxisarbeit
-%% Author:      Vorlage erstellt von Daniel Spitzer an der DHBW Lörrach 
-%% Angepasst:   Katja Wengler, ZWI, DHBW Karlsruhe
+%% Author:      Vorlage erstellt von Daniel Spitzer an der DHBW Lörrach
+%% Angepasst:   Manuel Rettig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,12pt]{article}
 
-% Sprache & Darstellung
+% Sprache
 \usepackage[english, ngerman]{babel} % Hier ggf. Sprache anpassen
-\usepackage{lmodern}
-
-% Babel Ersatz
-% \usepackage{polyglossia}
+% \usepackage{polyglossia}           % Babel Ersatz
 % \setdefaultlanguage[spelling=new, babelshorthands=true]{german}
 
-% Schriftart Carlito, fast identisch mit Calibri. Calibri ist auf Linux und MacOS nicht verfügbar. 
+% Schriftart
+\usepackage{lmodern}
+\usepackage{fontspec}
 % \usepackage{carlito}
-% \setmainfont{carlito}
-
-% Andere Schriftarten
-% \usepackage{fontspec}
+% \setmainfont{TeX Gyre Pagella}    % Serif
+% \setmainfont{TeX Gyre Termes}     $ Serif
 % \setsansfont{Arial}
 % \setmonofont{Courier New}
+% \setmainfont{TeX Gyre Heros}      % Sans serif
+% \setmainfont{carlito}             % Sans serif
 
 % Seitenränder Projekt bzw. Bachlorarbeit
-% \usepackage[left=2.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot]{geometry}
+\usepackage[left=3.5cm, right=2.5cm, bottom=2cm, top=2.5cm, head=1.25cm, foot=1.25cm, includefoot]{geometry}
 
 % Seitenränder Links / Rechts Symmetrisch z.B. für Portfolio oder Assignments
-\usepackage[left=2.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot]{geometry}
+% \usepackage[left=2.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot]{geometry}
 
 % Zeilenabstand: 1.5
 \usepackage{setspace}
@@ -39,24 +38,54 @@
 \usepackage{parskip}
 
 % Abkürzungsverzeichnis
-\usepackage[nohyperlinks, withpage, smaller, printonlyused]{acronym}
+\usepackage{acro}
+\input{text/acronym.tex}
+\acsetup{
+  list/name = \acronymHeading,
+  list/preamble = \addcontentsline{toc}{section}{\acronymHeading},
+  list/display=all
+}
 
-% Literaturverzeichnis
-\usepackage[backend=biber, style=apa, language=german, block=space, date=year]{biblatex}
-\addbibresource{literature/bibliography.bib}
+% Literaturverzeichnis & Zitieren
+\usepackage[backend=biber, style=apa, language=german, date=year, isbn=false, eprint=false, url=false, maxnames=2, minnames=1]{biblatex}  % APA
+% \usepackage[backend=biber, style=alphabetic, maxalphanames=1, language=german, date=year, isbn=false, eprint=false, url=false, maxnames=2, minnames=1]{biblatex}  % Alphabetic
+
+\DefineBibliographyStrings{german}{andothers={et\addabbrvspace al\adddot}}
+
+\addbibresource{./text/bibliography.bib}
+\renewcommand*{\labelalphaothers}{}
+\newcommand{\textciteyear}[1]{\textcolor{darkgray}{\citeauthor{#1} \cite{#1}}}
+
+% --- \cite in Grau + eckigen Klammern ---
+% \DeclareCiteCommand{\cite}
+%   {\usebibmacro{prenote}}
+%   {\textcolor{darkgray}{\mkbibbrackets{\usebibmacro{citeindex}\usebibmacro{cite}}}}
+%   {\multicitedelim}
+%   {\usebibmacro{postnote}}
+
+% --- \textcite in Grau + Autor (Jahr) ---
+\DeclareCiteCommand{\textcite}
+{\usebibmacro{prenote}}
+{\textcolor{darkgray}{\printnames{labelname}%
+\addspace\mkbibparens{\printfield{year}}}}
+{\multicitedelim}
+{\iffieldundef{postnote}{}{\addcomma\space\printfield{postnote}}}
 
 % Fuß und Kopfzeilen
 \usepackage{fancyhdr}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \def \footer{
-\begin{center}
-\hfill
-%\fontsize{\footerFontSize}{\footerFontSize}\selectfont\thesisFooterTitle
-\hfill
-\thepage
-\end{center}
+  \begin{center}
+    \hfill
+    %\fontsize{\footerFontSize}{\footerFontSize}\selectfont\thesisFooterTitle
+    \hfill
+    \thepage
+  \end{center}
 }
+\fancyhead{}
+\fancyfoot{}
+\fancyfoot[R]{\footer}
 
 % Positioniert die Fußnoten fest am unteren Ende der Seite
 \usepackage[hang, flushmargin, bottom, multiple]{footmisc}
@@ -64,49 +93,92 @@
 \renewcommand{\footnotelayout}{\hspace{0.5em}}
 
 % Tabellen & Abbildungen
-\usepackage{tabulary}
+% \usepackage{tabulary}
 \usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{rotating} % in der Präambel
+\usepackage[table]{xcolor}
+
+\definecolor{lightgray}{gray}{0.98}
+\definecolor{darkgrey}{gray}{0.7}
+\definecolor{color_strength}{HTML}{D8EFCB}   % sehr helles Grün
+\definecolor{color_weakness}{HTML}{FFE8CC} % sehr helles Orange
+\definecolor{color_opportunity}{HTML}{D6E5FF}    % sehr helles Blau
+\definecolor{color_threat}{HTML}{FFD6D6}    % sehr helles Rot
+
 \usepackage{float}  % Positioniert Tabellen und Abbildungen
 \usepackage{graphicx}
-\graphicspath{ {images/} }
+\graphicspath{{./config}{./text/images/}{./text/appendix/}}
 \usepackage[labelfont=bf]{caption}
-\captionsetup{belowskip=0pt}
-%\captionsetup{belowskip=-9pt}
+\captionsetup{belowskip=-9pt}
+\usepackage{ragged2e}
+
+\usepackage{pdflscape}
+\usepackage{booktabs}
+\usepackage{array}
+
+% X -> p{} (obenbündig), gut für Listen & Blocksatz
+\newenvironment{TabXtop}{%
+  \begingroup
+  \renewcommand\tabularxcolumn[1]{>{\arraybackslash}p{##1}}%
+}{\endgroup}
+
+% X -> m{} (vertikal mittig), gut für Matrix
+\newenvironment{TabXmid}{%
+  \begingroup
+  \renewcommand\tabularxcolumn[1]{m{##1}}%
+}{\endgroup}
+
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{L}{>{\RaggedRight\arraybackslash}X}
+
+% X-Spalten m-ähnlich machen (vertikale Mittelung wie m{})
+\renewcommand\tabularxcolumn[1]{>{\arraybackslash}p{#1}}
+
+\usepackage{tcolorbox}
+\tcbset{colback=gray!5,colframe=gray!40!black,boxrule=0.5pt,arc=2mm}
 
 % Aufzählungen
 \usepackage{enumitem}
+\setlist[description]{itemsep=0pt, parsep=0pt, topsep=0pt}
+\setlist{topsep=\parskip, itemsep=0pt, parsep=0pt}
 
 % Code-Blöcke
 \usepackage{minted}
 
-% Mathematik 
+% Mathematik
 \usepackage{mathtools}
 \usepackage{amssymb}
 
 % Anführungszeichen mit \enquote{...}
 \usepackage{csquotes}
+\newcommand{\epigraph}[2]{ % Befehl für ein einleitendes Zitat
+  \begin{quote}
+    \begin{quote}
+      \begin{center}
+        \textit{#1}
+      \end{center}
+      \hfill #2
+    \end{quote}
+  \end{quote}
+}
+
+\usepackage{pdfpages}
+\newcommand{\interviewref}[1]{%
+  % \hyperref[app:interview#1]{E#1}%
+  {E#1}%
+}
 
 % Das Paket hyperref muss als letztes Paket geladen werden. Das Paket setzt Links im PDF-Dokument.
 \usepackage[hidelinks, unicode]{hyperref}
-\hypersetup{pdftitle = {\thesisTitle}, pdfauthor = {\name}}
+\hypersetup{pdftitle = {\thesisFooterTitle}, pdfauthor = {\name}}
 
 % Normale Schriftart für URLs
 \renewcommand{\UrlFont}{}
 
-% Variable für das Speichern der Seitenzahl (römisch -> arabisch -> römisch)
-\newcounter{pageNumber}
-
 % Nummerierung: 2.1, 2.2 usw.
 \renewcommand{\labelenumii}{\theenumii}
 \renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
-
-% Befehl für ein einleitendes Zitat
-\usepackage{csquotes}
-\newcommand{\epigraph}[2]{
-    \begin{quote}\begin{quote}
-        \begin{center}
-            \textit{#1}
-        \end{center}
-        \hfill #2
-    \end{quote}\end{quote}
-}

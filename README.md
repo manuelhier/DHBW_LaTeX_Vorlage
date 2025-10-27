@@ -41,9 +41,15 @@ Folgende Abschnitte gibt es momentan:
 ├── LICENSE.txt                 # Die Lizenz dieser Vorlage
 ├── README.md                   # Diese Datei
 ├── manuals.md                  # Weitere Anleitungen
-├── images
-│   └── dhbw_logo.pdf           # Das Logo der DHBW für das Deckblatt
-│   └── company_logo.pdf        # Ein Beispiellogo für das Ausbildungsunternehmen
+├── config
+│   ├── dhbw_logo.pdf           # Das Logo der DHBW für das Deckblatt
+│   ├── company_logo.pdf        # Ein Beispiellogo für das Ausbildungsunternehmen
+|   ├── declaration.tex         # Ehrenwörtliche Erklärung und Hinweis auf dem Umfang der Arbeit
+│   ├── preamble.tex            # Globale Einstellungen
+|   ├── config.tex              # Konfigurationsdatei für den Benutzer
+│   ├── references.tex          # Quellenverzeichnis
+│   ├── releaseNotice.tex       # Freigabe der Arbeit
+│   └── titlepage.tex           # Deckblatt
 ├── text                        
 │   ├── abstract.tex            # Kurzfassung
 │   ├── acronym.tex             # Abkürzungsverzeichnis
@@ -55,12 +61,7 @@ Folgende Abschnitte gibt es momentan:
 │   ├── chapter4.tex            # Kapitel 4
 │   ├── chapter5.tex            # Kapitel 5          
 │   └── template                # Vorlagenorder. Diese Dateien müssen nicht geöffnet oder geändert werden.
-│       ├── declaration.tex     # Ehrenwörtliche Erklärung und Hinweis auf dem Umfang der Arbeit
-│       ├── preamble.tex        # Globale Einstellungen
-│       ├── references.tex      # Quellenverzeichnis
-│       ├── releaseNotice.tex   # Freigabe der Arbeit
-│       └── titlepage.tex       # Deckblatt
-├── config.tex                  # Konfigurationsdatei für den Benutzer
+|
 └── document.tex                # Masterdatei
 ```
 
