@@ -1,23 +1,22 @@
-# Vorlage für das wissenschaftliche Arbeiten von Daniel Sptzer am SZI der DHBW Lörrach
-# Angepasst von Katja  Wengler DHBW Karlsruhe, ZWI
-# Angepasst von Manuel Rettig im Laufe des Studiums
+# DHBW Karlsruhe -  LaTeX Vorlage für Projekt- und Bachelorarbeiten (oder sonstige Abgaben 😉)
 
-## Vorbereitungen
-> Die folgende Schritte zeigen das Vorgehen für Windows
+## Credit where credit is due
++ Vorlage für das wissenschaftliche Arbeiten von Daniel Sptzer am SZI der DHBW Lörrach ([Link](https://gitlab.com/spitzerd/latex-vorlage-dhbw-loerrach-szi/))
++ Angepasst von Katja  Wengler DHBW Karlsruhe, ZWI (Wie im moodle zu finden)
++ Angepasst von von mir im Laufe des Studiums!
 
-1. MiKTeX downloaden und installieren: https://miktex.org/download
-2. Texmaker downloaden und installieren: http://www.xm1math.net/texmaker/download.html
-3. In Texmaker auf "Optionen -> Texmaker konfigurieren -> Schnelles Übersetzten" klicken
-4. Die Option "Benutzerdefiniert" auswählen und folgenden Code einfügen: <br> ```lualatex -interaction=nonstopmode %.tex|biber %|lualatex -interaction=nonstopmode %.tex|lualatex -interaction=nonstopmode %.tex```
-5. In der Konfigurtion lässt sich unter dem Punkt "Editor" eine Rechtschreibprüfung auswählen. Hier sollte man das deutsche Wörterbuch auswählen (de_DE.dic)
-6. Mit "OK" die Konfiguration speichern.
-7. Die Datei config.tex öffnen und persönliche Daten anpassen.
-7. Die Datei main.tex mit Texmaker öffnen
-8. Mit einem Klick auf den Pfeil links neben "Schnelles Übersetzen" wird nach etwa 10 Sekunden ein PDF-Dokument erzeugt. Beim ersten Mal dauert es länger, weil Pakete heruntergeladen werden müssen. Falls ein Fehler angezeigt wird noch einmal den Pfeil drücken, damit die nachinstallierten Pakete benutzt werden können.
+## Vorbreitung und Nutzung (im Aufbau)
+> Windows
+
+> Linux
+
+> Docker
+
+> Overleaf
 
 ## Allgemeines zum Arbeiten mit der Vorlage
 Alle für den Benutzer relevanten Dateien sind in dem Order text und im Wurzelverzeichnis. 
-Die Datei document.tex ist die Masterdatei der Vorlage. Mit einem Klick auf "Optionen" kann man die aktuelle Masterdatei festlegen. Die Masterdatei muss die Datei document.tex sein. Durch die Option kann man das PDF-Dokument erzeugen, auch wenn man gerade nicht die Masterdatei offen hat.
+Die Datei main.tex ist die Masterdatei der Vorlage. Mit einem Klick auf "Optionen" kann man die aktuelle Masterdatei festlegen. Die Masterdatei muss die Datei main.tex sein. Durch die Option kann man das PDF-Dokument erzeugen, auch wenn man gerade nicht die Masterdatei offen hat.
 
 Damit man das Öffnen der ganzen Dateien und die Definition der Masterdatei nicht bei jedem Start von Texmaker erledigen muss, kann man unter "Datei -> Sitzung" eine Sitzung speichern und sie wieder laden.
 
@@ -33,14 +32,10 @@ Weitere Anleitungen sind in der Datei [manuals.md](https://gitlab.com/spitzerd/l
 Folgende Abschnitte gibt es momentan:
 - Schreiben mit Visual Studio Code
 - Hinzufügen von weiteren Quellenarten
-- Linux
 
 ## Ordnerstruktur
 ```
 .
-├── LICENSE.txt                 # Die Lizenz dieser Vorlage
-├── README.md                   # Diese Datei
-├── manuals.md                  # Weitere Anleitungen
 ├── config
 │   ├── dhbw_logo.pdf           # Das Logo der DHBW für das Deckblatt
 │   ├── company_logo.pdf        # Ein Beispiellogo für das Ausbildungsunternehmen
@@ -62,7 +57,11 @@ Folgende Abschnitte gibt es momentan:
 │   ├── chapter5.tex            # Kapitel 5          
 │   └── template                # Vorlagenorder. Diese Dateien müssen nicht geöffnet oder geändert werden.
 |
-└── document.tex                # Masterdatei
+├── LICENSE.txt                 # Die Lizenz dieser Vorlage
+├── README.md                   # Diese Datei
+├── main.pdf                    # Output (pdf)
+└── main.tex                    # Masterdatei
+
 ```
 
 ## Schreiben mit Visual Studio Code
@@ -97,13 +96,6 @@ Mit dem Parameter "type" wird der Typ definiert, den wir im ersten Schritt gewä
 } 
 ```
 4. Wenn der Eintrag zitiert wird, erscheint im Quellenverzeichnis der Abschnitt "Wissenschaftliche Arbeiten".
-
-## Linux
-Unter Linux muss man statt MiKTeX eine andere TeX-Distribution, z. B. TeX Live, installieren. Mit folgendem Befehl wird TeX Live installiert:
-```
-sudo apt-get install texlive-bibtex-extra biber texlive-lang-german texlive-latex-extra fonts-crosextra-carlito texlive-luatex texinfo
-```
-Danke @Zoidbart für diesen Beitrag (Issue #1)
 
 ## Weiterentwicklung
 Merge Requests und Issues sind gerne gesehen.
