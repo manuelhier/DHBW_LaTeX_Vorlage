@@ -16,33 +16,38 @@ A professional, minimal, and fast LaTeX template for DHBW Karlsruhe project and 
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Quick Start - Like Overleaf
 
-### Choose your workflow:
-
-| Method | Time | Requirements |
-|--------|------|--------------|
-| **🐳 Docker** (Recommended) | 2 min | Docker installed |
-| **💻 Local** | 5 min | LaTeX distribution |
-| **☁️ GitHub Actions** | Auto | Push to GitHub |
-| **📝 VS Code Dev Container** | 1 click | VS Code + Docker |
-| **☁️ Overleaf** | Instant | Browser |
-
-### Start now (Docker):
+### Simplest Workflow: Press Ctrl+Enter to Build
 
 ```bash
 # Clone repository
 git clone https://github.com/mrettig/DHBW_LaTeX_Vorlage.git
 cd DHBW_LaTeX_Vorlage
 
-# Build PDF
-docker build -t dhbw-latex . && docker run --rm -v $(pwd):/work dhbw-latex
-
-# Or use docker-compose
-docker-compose up
+# Open in VS Code
+code .
 ```
 
-**→ See [INSTALLATION.md](INSTALLATION.md) for detailed setup guides**
+**Then in VS Code:**
+1. Open `main.tex`
+2. Press **Ctrl+Enter** (or click the play button ▶️)
+3. Wait 2-3 minutes
+4. PDF appears automatically
+
+✨ That's it! No `make` commands, no latexmk installation needed.
+
+### Alternative Workflows
+
+Want to use Docker directly or Overleaf instead?
+
+| Method | Setup Time | Command |
+|--------|-----------|---------|
+| **Docker Compose** | 1 min | `docker-compose up` |
+| **GitHub Actions** | 0 min | Push → auto-builds |
+| **Overleaf** | Instant | Upload files |
+
+**→ See [INSTALLATION.md](INSTALLATION.md) for detailed guides**
 
 ---
 
@@ -74,31 +79,28 @@ Choose your platform and preferred workflow:
 
 ## 🔨 Building Your PDF
 
-### Using Make (Linux/macOS/WSL)
-```bash
-make all              # Build PDF
-make clean            # Remove build artifacts
-make watch            # Watch mode (recompile on save)
-make docker-build     # Build with Docker
+### Primary Method: VS Code (Like Overleaf)
+
+```
+Open main.tex → Press Ctrl+Enter → PDF builds automatically in 2-3 minutes
 ```
 
-### Using Docker
-```bash
-# Build image and run
-docker build -t dhbw-latex . && docker run --rm -v $(pwd):/work dhbw-latex
+No installation needed - Docker handles everything!
 
-# Or with docker-compose
+### Alternative: Docker Directly
+
+```bash
+# Use docker-compose (simplest)
 docker-compose up
+
+# Or manual docker commands
+docker build -t dhbw-latex .
+docker run --rm -v $(pwd):/work dhbw-latex
 ```
 
-### Using VS Code with Dev Container
-1. Install VS Code and "Dev Containers" extension
-2. Open folder in VS Code
-3. Click "Reopen in Container" (bottom-left)
-4. Use LaTeX Workshop to build (Ctrl+Alt+B)
+### Automatic: GitHub Actions
 
-### Automatic (GitHub Actions)
-Push to GitHub → PDF builds automatically → Download from Artifacts tab
+Push to GitHub → PDF builds automatically → Download from "Artifacts" tab
 
 **→ Detailed workflows in [DEVELOPMENT.md](DEVELOPMENT.md)**
 

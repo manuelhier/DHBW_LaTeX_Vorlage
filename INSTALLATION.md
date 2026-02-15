@@ -1,102 +1,101 @@
 # Installation Guide - DHBW LaTeX Template
 
-Choose your platform and preferred workflow below.
+## Quick Answer: Press Ctrl+Enter ⚡
+
+No installation needed! Docker handles everything:
+
+1. **Install:** [Docker Desktop](https://www.docker.com/products/docker-desktop)
+2. **Clone:** `git clone https://github.com/mrettig/DHBW_LaTeX_Vorlage.git`
+3. **Open:** VS Code
+4. **Build:** Press **Ctrl+Enter** in `main.tex`
+
+Done! ✨
+
+---
+
+## Installation by Preference
+
+Choose your workflow:
 
 **Table of Contents:**
-- [Windows](#windows)
-- [Linux](#linux)
-- [macOS](#macos)
-- [VS Code Dev Container](#vs-code-dev-container)
-- [Overleaf](#overleaf)
-- [Docker](#docker)
-- [Troubleshooting](#troubleshooting)
+- [VS Code + Docker (Recommended)](#vs-code--docker-recommended) - Like Overleaf, no configuration
+- [VS Code Dev Container](#vs-code-dev-container) - One-click setup
+- [Docker + Terminal](#docker--terminal) - CLI-based builds
+- [GitHub Actions](#github-actions) - Auto-builds on push
+- [Overleaf](#overleaf) - Browser-based
+- [Advanced: Local LaTeX Installation](#advanced-local-latex-installation) - For power users
 
 ---
 
-## Windows
+## VS Code + Docker (Recommended)
 
-### Option 1: Local Installation with MiKTeX
+**Everything you need:**
+- VS Code installed
+- Docker Desktop installed
 
-**Requirements:** Windows 10/11, ~2-3 GB disk space
+**Setup:**
+1. Clone: `git clone https://github.com/mrettig/DHBW_LaTeX_Vorlage.git`
+2. Open in VS Code: `code DHBW_LaTeX_Vorlage`
+3. First time only: `Ctrl+Enter` triggers docker build (~2-3 min)
+4. Subsequent builds: ~2 min (uses cache)
 
-1. **Download and Install MiKTeX**
-   - Visit [miktex.org](https://miktex.org/)
-   - Download "MiKTeX Installer" (~240 MB)
-   - Run installer, choose "Install MiKTeX for all users"
-   - Complete installation
-
-2. **Install Biber (Bibliography Processing)**
-   - Open Command Prompt as Administrator
-   - Run: `tlmgr install biber`
-   - Or: Download from [sourceforge.net/projects/biblatex-biber](https://sourceforge.net/projects/biblatex-biber/)
-
-3. **Install Python + Pygments (for code highlighting)**
-   - Download Python from [python.org](https://python.org)
-   - During installation: **Check "Add Python to PATH"**
-   - Open Command Prompt and run: `pip install pygments`
-
-4. **Verify Installation**
-   ```cmd
-   latexmk --version        # Should show version info
-   biber --version          # Should show biber version
-   pygmentize -V            # Should show Pygments version
-   ```
-
-5. **Clone and Build**
-   ```cmd
-   git clone https://github.com/mrettig/DHBW_LaTeX_Vorlage.git
-   cd DHBW_LaTeX_Vorlage
-   make all                 # Requires Make (see below)
-   ```
-
-**Install GNU Make for Windows (if needed):**
-- Option A: Install [Git for Windows](https://git-scm.com/) - includes make
-- Option B: Use `latexmk -pdf main.tex` directly (no Make needed)
-
-### Option 2: Local Installation with TeX Live
-
-1. **Download TeX Live Installer**
-   - Visit [tug.org/texlive](https://tug.org/texlive/)
-   - Download `install-tl-windows.exe`
-   - Run and complete installation
-
-2. **Post-Installation**
-   ```cmd
-   tlmgr install biber
-   pip install pygments
-   ```
-
-3. **Build**
-   ```cmd
-   latexmk -xelatex -biber -pdf main.tex
-   ```
-
-### Option 3: Docker (Recommended for Windows)
-
-See [Docker](#docker) section below - avoids local LaTeX installation entirely.
-
-### Option 4: VS Code Dev Container
-
-See [VS Code Dev Container](#vs-code-dev-container) section below.
+**Enjoy:** Press Ctrl+Enter whenever you want to build. Period.
 
 ---
 
-## Linux
+## VS Code Dev Container
 
-### Ubuntu/Debian
+Even simpler - one-click setup:
 
-1. **Install LaTeX and Dependencies**
-   ```bash
-   sudo apt-get update
-   sudo apt-get install \
-     texlive-latex-full \
-     texlive-xetex \
-     texlive-bibtex-extra \
-     biber \
-     latexmk \
-     python3-pygments \
-     git
-   ```
+1. Install [VS Code](https://code.visualstudio.com/)
+2. Install [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+3. Clone: `git clone https://github.com/mrettig/DHBW_LaTeX_Vorlage.git`
+4. Open in VS Code: `code DHBW_LaTeX_Vorlage`
+5. Click "Reopen in Container" (bottom-left corner)
+6. Wait for container to build (~2-3 min)
+7. Press Ctrl+Enter to build PDF
+
+---
+
+## Docker + Terminal
+
+For CLI enthusiasts:
+
+```bash
+# Clone
+git clone https://github.com/mrettig/DHBW_LaTeX_Vorlage.git
+cd DHBW_LaTeX_Vorlage
+
+# Option A: docker-compose (simplest)
+docker-compose up
+
+# Option B: Manual docker
+docker build -t dhbw-latex .
+docker run --rm -v $(pwd):/work dhbw-latex
+```
+
+---
+
+## GitHub Actions
+
+Auto-builds on every push:
+
+1. Push to GitHub
+2. Check "Actions" tab
+3. Download PDF from "Artifacts"
+
+---
+
+## Overleaf
+
+1. Download all files: `git clone ... && zip -r dhbw.zip DHBW_LaTeX_Vorlage`
+2. Visit [overleaf.com](https://www.overleaf.com/)
+3. Create new project → Upload ZIP
+4. Build (Overleaf handles LaTeX setup)
+
+---
+
+## Advanced: Local LaTeX Installation
 
 2. **Verify Installation**
    ```bash

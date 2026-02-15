@@ -1,59 +1,75 @@
 {
   // ============================================================================
-  // LATEX WORKSHOP EXTENSION SETTINGS
+  // LATEX WORKSHOP EXTENSION SETTINGS - DOCKER-FIRST CONFIGURATION
   // ============================================================================
-  // NOTE: This template primarily uses Docker for building (recommended)
-  // Local latexmk is optional. If you have it installed, these settings apply.
-  // If not, use: make docker-build or docker-compose up
+  // This template uses Docker for all builds (like Overleaf)
+  // Press Ctrl+Enter to build → LaTeX Workshop triggers Docker automatically
+  // No local LaTeX installation needed!
 
-  // Only enable auto-build if you have latexmk installed locally
-  // Set to "never" if you want to use Docker builds instead
-  "latex-workshop.latex.autoBuild.run": "never",
-  "latex-workshop.latex.autoClean.run": "onBuilt",
+  // ============================================================================
+  // DOCKER BUILD CONFIGURATION
+  // ============================================================================
 
-  // LaTeX build tools configuration (for local builds with latexmk)
+  // LaTeX Workshop build tools
   "latex-workshop.latex.tools": [
     {
-      "name": "latexmk",
-      "command": "latexmk",
+      "name": "docker-build",
+      "command": "docker",
       "args": [
-        "-xelatex",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "-synctex=1",
-        "-biber",
-        "%DOCFILE%"
+        "run",
+        "--rm",
+        "-v", "${workspaceFolder}:/work",
+        "dhbw-latex"
+      ],
+      "env": {}
+    },
+    {
+      "name": "docker-image-build",
+      "command": "docker",
+      "args": [
+        "build",
+        "-t", "dhbw-latex",
+        "${workspaceFolder}"
       ],
       "env": {}
     }
   ],
 
-  // Default recipe (build configuration) - for local builds only
+  // LaTeX Workshop recipes (build workflows)
   "latex-workshop.latex.recipes": [
     {
-      "name": "latexmk (local only)",
-      "tools": ["latexmk"]
+      "name": "Docker (one-click build)",
+      "tools": [
+        "docker-image-build",
+        "docker-build"
+      ]
     }
   ],
+
+  // Set Docker recipe as default
+  "latex-workshop.latex.recipe.default": "Docker (one-click build)",
+
+  // ============================================================================
+  // LATEX WORKSHOP CORE SETTINGS
+  // ============================================================================
+
+  // Disable auto-build (we use Ctrl+Enter instead)
+  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.latex.autoClean.run": "never",
 
   // PDF viewer settings
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.view.pdf.zoom": "page-width",
   "latex-workshop.synctex.afterBuild.enabled": true,
 
-  // ============================================================================
-  // BUILD ADVICE FOR DOCKER USERS
-  // ============================================================================
-  // If you don't have latexmk installed, use one of these instead:
-  //
-  // Terminal: make              (builds with Docker)
-  // Terminal: make docker-build (same, explicit)
-  // Terminal: docker-compose up (alternative)
-  //
-  // See README.md for full setup instructions
+  // Build on save disabled (manual Ctrl+Enter only)
+  "latex-workshop.showBuildOnSave": false,
+
+  // Show context menu
+  "latex-workshop.showContextMenu": true,
 
   // ============================================================================
-  // SPELL CHECK SETTINGS
+  // SPELL CHECK SETTINGS (German + English)
   // ============================================================================
 
   "spellright.language": [
@@ -85,9 +101,5 @@
   },
   "[bibtex]": {
     "editor.defaultFormatter": null
-  },
-
-  // LaTeX-specific settings
-  "latex-workshop.showContextMenu": true,
-  "latex-workshop.showBuildOnSave": false
+  }
 }

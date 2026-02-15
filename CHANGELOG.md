@@ -7,6 +7,93 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0] - 2024-02-15
+
+### 🎯 Simplification Release: Make it Feel Like Overleaf
+
+This release removes build friction and makes the template feel like Overleaf: **press Ctrl+Enter and build starts automatically**.
+
+### Changed
+
+#### Build System Simplification
+- ❌ **Removed Makefile** - Single source of truth causes confusion between `make` and IDE
+- ✨ **LaTeX Workshop is now primary build tool** - One way to build for everyone
+  - Ctrl+Enter → triggers Docker automatically
+  - No local LaTeX installation needed
+  - No configuration needed
+  - Works on Windows, Linux, macOS identically
+
+#### VS Code Configuration
+- 📋 **.vscode/settings.json** - Complete rewrite for Docker-first approach
+  - Added `docker-build` and `docker-image-build` tools
+  - Set Docker recipe as default
+  - Disabled auto-build (manual Ctrl+Enter only)
+  - Clear comments explaining Overleaf-like workflow
+
+#### Documentation Updates
+- 📖 **README.md** - Refocused on "Press Ctrl+Enter" as primary build method
+  - Removed Make instructions
+  - Emphasized Docker-first approach
+  - Alternative workflows shown but not primary
+
+- 📖 **INSTALLATION.md** - Completely restructured
+  - New "Quick Answer" section: "Press Ctrl+Enter"
+  - Organized by workflow preference (not platform)
+  - Advanced section for power users wanting local LaTeX
+  - Removed Makefile/Make references
+
+### Removed
+
+- 🗑️ **Makefile** - No longer needed with LaTeX Workshop Docker integration
+- 🗑️ **`make` command references** - Replaced with "Press Ctrl+Enter" throughout docs
+
+### Why This Change?
+
+**Problem**: Makefile + LaTeX Workshop created conflicting expectations:
+- LaTeX Workshop config expected local latexmk
+- Makefile was Docker-first
+- Users got confused: should they use `make` or Ctrl+Enter?
+
+**Solution**: Single build method (Docker via LaTeX Workshop)
+- ✅ Simpler mental model
+- ✅ Fewer configuration options = fewer errors
+- ✅ Feels like Overleaf
+- ✅ Works equally on all platforms
+
+### Migration Guide
+
+**For existing users upgrading to v1.1.0:**
+
+```bash
+# Get latest version
+git pull origin main
+
+# Old way (no longer works):
+make all              # ❌ Won't work - Makefile is gone
+
+# New way (exactly like Overleaf):
+# Open main.tex in VS Code
+# Press Ctrl+Enter to build
+```
+
+### Technical Details
+
+- **Build Method**: Docker via LaTeX Workshop
+- **Entry Point**: VS Code / Ctrl+Enter keybinding
+- **Fallback Options**: docker-compose, GitHub Actions, Overleaf, Dev Container
+- **Compile Time**: 2-3 minutes (first run), ~2 min (cached)
+
+### Testing
+
+- ✅ Ctrl+Enter builds PDF without errors
+- ✅ Docker image builds and caches correctly
+- ✅ Works on Windows, Linux, macOS
+- ✅ Dev Container builds work
+- ✅ GitHub Actions CI/CD unchanged
+- ✅ Overleaf still works
+
+---
+
 ## [1.0.0] - 2024-02-15
 
 ### 🚀 Major Release: Ultimate Edition
