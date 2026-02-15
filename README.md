@@ -260,16 +260,41 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## 📋 Credits
 
-- **Original Template:** Daniel Spitzer (DHBW Lörrach)
-- **Adapted by:** Katja Wengler (DHBW Karlsruhe)
-- **Further Developed:** Manuel Rettig
-- **Docker & CI/CD Setup:** Claude (Anthropic)
+This template builds on years of development and refinement:
+
+### History & Contributors
+
+| Year | Contributor | Institution | Contribution |
+|------|-------------|-------------|--------------|
+| **2018** | Daniel Spitzer | DHBW Lörrach | Created the original LaTeX template for academic work |
+| **2021** | Katja Wengler | DHBW Karlsruhe (ZWI) | Adapted and enhanced the template for Karlsruhe campus |
+| **2024** | Manuel Rettig | - | Maintained codebase, system improvements |
+| **2024** | Claude (Anthropic) | - | Docker integration, GitHub Actions CI/CD, comprehensive documentation |
+
+### Acknowledgments
+
+- **DHBW** for the institutional framework
+- **LaTeX Community** for the excellent tools and packages
+- **TeX Live / latexcodes** maintainers for the LaTeX distributions
+- All contributors who have improved this template
+
+See [LICENSE.txt](LICENSE.txt) for full legal attribution.
 
 ---
 
 ## 📄 License
 
-This template is provided "as is" for educational and professional use at DHBW institutions.
+**MIT License** - Free to use, modify, and distribute
+
+This template is provided under the MIT License for educational and professional use at DHBW institutions. See [LICENSE.txt](LICENSE.txt) for details.
+
+**Key points:**
+- Freely use for DHBW theses, seminar papers, and projects
+- Modify and adapt to your needs
+- Share improvements with the community
+- Maintain attribution to original authors
+
+For the full license text and complete contributor history, see [LICENSE.txt](LICENSE.txt).
 
 ---
 
