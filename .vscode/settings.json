@@ -7,63 +7,39 @@
   // No local LaTeX installation needed!
 
   // ============================================================================
-  // DOCKER BUILD CONFIGURATION
+  // DOCKER BUILD CONFIGURATION (Built-in LaTeX Workshop Docker support)
   // ============================================================================
 
-  // LaTeX Workshop build tools
-  "latex-workshop.latex.tools": [
-    {
-      "name": "docker-build",
-      "command": "docker",
-      "args": [
-        "run",
-        "--rm",
-        "-v", "${workspaceFolder}:/work",
-        "dhbw-latex"
-      ],
-      "env": {}
-    },
-    {
-      "name": "docker-image-build",
-      "command": "docker",
-      "args": [
-        "build",
-        "-t", "dhbw-latex",
-        "${workspaceFolder}"
-      ],
-      "env": {}
-    }
-  ],
-
-  // LaTeX Workshop recipes (build workflows)
-  "latex-workshop.latex.recipes": [
-    {
-      "name": "Docker (one-click build)",
-      "tools": [
-        "docker-image-build",
-        "docker-build"
-      ]
-    }
-  ],
-
-  // Set Docker recipe as default
-  "latex-workshop.latex.recipe.default": "Docker (one-click build)",
+  // Enable Docker-based building via LaTeX Workshop's native Docker support
+  "latex-workshop.docker.enabled": true,
+  "latex-workshop.docker.image.latex": "texlive/texlive:latest-full",
 
   // ============================================================================
   // LATEX WORKSHOP CORE SETTINGS
   // ============================================================================
 
-  // Disable auto-build (we use Ctrl+Enter instead)
-  "latex-workshop.latex.autoBuild.run": "never",
-  "latex-workshop.latex.autoClean.run": "never",
+  // Auto-build on file save
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  // Auto-clean on successful build
+  "latex-workshop.latex.autoClean.run": "onSucceeded",
+  // Disable clean and retry on failure
+  "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+  // Show root file in status bar
+  "latex-workshop.latex.build.rootfileInStatus": true,
+  // Identify root file by \begin{document}
+  "latex-workshop.latex.rootFile.indicator": "\\begin{document}",
+  // Enable citation backend intellisense
+  "latex-workshop.intellisense.citation.backend": "biblatex",
+  // Enable LaTeX formatting
+  "latex-workshop.formatting.latex": "tex-fmt",
 
   // PDF viewer settings
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.view.pdf.zoom": "page-width",
   "latex-workshop.synctex.afterBuild.enabled": true,
 
-  // Build on save disabled (manual Ctrl+Enter only)
-  "latex-workshop.showBuildOnSave": false,
+  // Show build on save notification
+  "latex-workshop.showBuildOnSave": true,
 
   // Show context menu
   "latex-workshop.showContextMenu": true,
