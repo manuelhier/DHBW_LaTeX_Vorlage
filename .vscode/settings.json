@@ -2,11 +2,16 @@
   // ============================================================================
   // LATEX WORKSHOP EXTENSION SETTINGS
   // ============================================================================
+  // NOTE: This template primarily uses Docker for building (recommended)
+  // Local latexmk is optional. If you have it installed, these settings apply.
+  // If not, use: make docker-build or docker-compose up
 
-  "latex-workshop.latex.autoBuild.run": "onSave",
+  // Only enable auto-build if you have latexmk installed locally
+  // Set to "never" if you want to use Docker builds instead
+  "latex-workshop.latex.autoBuild.run": "never",
   "latex-workshop.latex.autoClean.run": "onBuilt",
 
-  // LaTeX build tools configuration
+  // LaTeX build tools configuration (for local builds with latexmk)
   "latex-workshop.latex.tools": [
     {
       "name": "latexmk",
@@ -23,10 +28,10 @@
     }
   ],
 
-  // Default recipe (build configuration)
+  // Default recipe (build configuration) - for local builds only
   "latex-workshop.latex.recipes": [
     {
-      "name": "latexmk (xelatex + biber)",
+      "name": "latexmk (local only)",
       "tools": ["latexmk"]
     }
   ],
@@ -36,8 +41,16 @@
   "latex-workshop.view.pdf.zoom": "page-width",
   "latex-workshop.synctex.afterBuild.enabled": true,
 
-  // Output file directory (build artifacts)
-  "latex-workshop.latex.outDir": "./out",
+  // ============================================================================
+  // BUILD ADVICE FOR DOCKER USERS
+  // ============================================================================
+  // If you don't have latexmk installed, use one of these instead:
+  //
+  // Terminal: make              (builds with Docker)
+  // Terminal: make docker-build (same, explicit)
+  // Terminal: docker-compose up (alternative)
+  //
+  // See README.md for full setup instructions
 
   // ============================================================================
   // SPELL CHECK SETTINGS
@@ -76,23 +89,5 @@
 
   // LaTeX-specific settings
   "latex-workshop.showContextMenu": true,
-  "latex-workshop.showBuildOnSave": true,
-
-  // ============================================================================
-  // KEYBINDINGS (custom shortcuts)
-  // ============================================================================
-
-  // Add to keybindings.json if you want custom shortcuts:
-  // {
-  //   "key": "ctrl+l ctrl+b",
-  //   "command": "latex-workshop.build"
-  // },
-  // {
-  //   "key": "ctrl+l ctrl+v",
-  //   "command": "latex-workshop.view"
-  // },
-  // {
-  //   "key": "ctrl+l ctrl+c",
-  //   "command": "latex-workshop.clean"
-  // }
+  "latex-workshop.showBuildOnSave": false
 }
