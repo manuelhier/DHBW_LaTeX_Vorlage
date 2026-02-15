@@ -1,15 +1,16 @@
 # VS Code Dev Container for DHBW LaTeX Template
 # Extends TeX Live with development tools for VS Code integration
 
-FROM texlive/texlive:latest
+FROM texlive/texlive:latest-full
 
-# Install additional development utilities
+# Install additional development utilities and Pygments for minted
 RUN apt-get update && apt-get install -y \
     git \
     curl \
     wget \
     vim \
     nano \
+    python3-pygments \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
