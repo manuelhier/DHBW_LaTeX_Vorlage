@@ -15,6 +15,36 @@
   "latex-workshop.docker.image.latex": "texlive/texlive:latest-full",
 
   // ============================================================================
+  // LATEX BUILD TOOLS AND RECIPES
+  // ============================================================================
+
+  // Define xelatex-latexmk as a build tool
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatex-latexmk",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-interaction=nonstopmode",
+        "-synctex=1",
+        "-file-line-error",
+        "-shell-escape",
+        "%DOC%"
+      ]
+    }
+  ],
+
+  // Define build recipes
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "[Docker] Latexmk ➜ PDF",
+      "tools": [
+        "xelatex-latexmk"
+      ]
+    }
+  ],
+
+  // ============================================================================
   // LATEX WORKSHOP CORE SETTINGS
   // ============================================================================
 
@@ -24,6 +54,8 @@
   "latex-workshop.latex.autoClean.run": "onSucceeded",
   // Disable clean and retry on failure
   "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+  // Clean subfolder enabled
+  "latex-workshop.latex.clean.subfolder.enabled": true,
   // Show root file in status bar
   "latex-workshop.latex.build.rootfileInStatus": true,
   // Identify root file by \begin{document}
@@ -37,6 +69,7 @@
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.view.pdf.zoom": "page-width",
   "latex-workshop.synctex.afterBuild.enabled": true,
+  "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
 
   // Show build on save notification
   "latex-workshop.showBuildOnSave": true,
