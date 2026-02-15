@@ -1,43 +1,59 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 2020-06-20
-%% Descr:       Formale Einstellungen für die Praxisarbeit
-%% Author:      Vorlage erstellt von Daniel Spitzer an der DHBW Lörrach
-%% Angepasst:   Manuel Rettig
+%% DHBW LaTeX Template - Preamble
+%% Original:  Daniel Spitzer (DHBW Lörrach)
+%% Adapted:   Katja Wengler (DHBW Karlsruhe), Manuel Rettig
+%% Enhanced:  Docker & CI/CD optimized
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,12pt]{article}
 
-% Sprache
-\usepackage[english, ngerman]{babel} % Hier ggf. Sprache anpassen
-% \usepackage{polyglossia}           % Babel Ersatz
-% \setdefaultlanguage[spelling=new, babelshorthands=true]{german}
+% ============================================================================
+% LANGUAGE & TYPOGRAPHY
+% ============================================================================
 
-% Schriftart
-\usepackage{lmodern}
-\usepackage{fontspec}
+% Language support: German primary, English fallback
+\usepackage[english, ngerman]{babel}
+
+% Font packages for XeLaTeX
+\usepackage{lmodern}                  % Scalable serif font
+\usepackage{fontspec}                 % Advanced font configuration for XeLaTeX
+
+% Optional: Custom fonts (uncomment to use)
 % \usepackage{carlito}
-% \setmainfont{TeX Gyre Pagella}    % Serif
-% \setmainfont{TeX Gyre Termes}     $ Serif
+% \setmainfont{TeX Gyre Pagella}      % Alternative serif font
+% \setmainfont{TeX Gyre Termes}       % Another serif option
 % \setsansfont{Arial}
 % \setmonofont{Courier New}
-% \setmainfont{TeX Gyre Heros}      % Sans serif
-% \setmainfont{carlito}             % Sans serif
 
-% Seitenränder Projekt bzw. Bachlorarbeit
+% ============================================================================
+% PAGE LAYOUT
+% ============================================================================
+
+% Margins: Left 3.5cm, Right 2.5cm, Top/Bottom 2-2.5cm
 \usepackage[left=3.5cm, right=2.5cm, bottom=2cm, top=2.5cm, head=1.25cm, foot=1.25cm, includefoot]{geometry}
 
-% Seitenränder Links / Rechts Symmetrisch z.B. für Portfolio oder Assignments
+% Alternative: symmetric margins (for portfolio/assignments)
 % \usepackage[left=2.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot]{geometry}
 
-% Zeilenabstand: 1.5
+% Line spacing: 1.5x (required for academic theses)
 \usepackage{setspace}
 \setstretch{1.5}
 
-% Inhaltsverzeichnis
-\usepackage[nottoc]{tocbibind}
+% Paragraph spacing
 \usepackage{parskip}
 
-% Abkürzungsverzeichnis
+% ============================================================================
+% TABLE OF CONTENTS & SECTIONING
+% ============================================================================
+
+% Include bibliography in TOC (but not TOC itself)
+\usepackage[nottoc]{tocbibind}
+
+% ============================================================================
+% ACRONYMS & ABBREVIATIONS
+% ============================================================================
+
+% Automatic acronym list generation
 \usepackage{acro}
 \input{text/acronym.tex}
 \acsetup{
@@ -46,24 +62,31 @@
   list/display=all
 }
 
-% Literaturverzeichnis & Zitieren
-\usepackage[backend=biber, style=apa, language=german, date=year, isbn=false, eprint=false, url=false, maxnames=2, minnames=1]{biblatex}  % APA
-% \usepackage[backend=biber, style=alphabetic, maxalphanames=1, language=german, date=year, isbn=false, eprint=false, url=false, maxnames=2, minnames=1]{biblatex}  % Alphabetic
+% ============================================================================
+% BIBLIOGRAPHY & CITATIONS
+% ============================================================================
+
+% APA style bibliography with biber backend
+\usepackage[backend=biber, style=apa, language=german, date=year, isbn=false, eprint=false, url=false, maxnames=2, minnames=1]{biblatex}
+
+% Alternative: Alphabetic/numeric styles
+% \usepackage[backend=biber, style=alphabetic, maxalphanames=1, language=german, date=year, isbn=false, eprint=false, url=false, maxnames=2, minnames=1]{biblatex}
 
 \DefineBibliographyStrings{german}{andothers={et\addabbrvspace al\adddot}}
-
 \addbibresource{./assets/literature/bibliography.bib}
 \renewcommand*{\labelalphaothers}{}
+
+% Custom citation command: "Author (Year)" in gray
 \newcommand{\textciteyear}[1]{\textcolor{darkgray}{\citeauthor{#1} \cite{#1}}}
 
-% --- \cite in Grau + eckigen Klammern ---
+% Alternative: Gray citations in brackets
 % \DeclareCiteCommand{\cite}
 %   {\usebibmacro{prenote}}
 %   {\textcolor{darkgray}{\mkbibbrackets{\usebibmacro{citeindex}\usebibmacro{cite}}}}
 %   {\multicitedelim}
 %   {\usebibmacro{postnote}}
 
-% --- \textcite in Grau + Autor (Jahr) ---
+% Custom \textcite format: gray "Author (Year)"
 \DeclareCiteCommand{\textcite}
 {\usebibmacro{prenote}}
 {\textcolor{darkgray}{\printnames{labelname}%
@@ -71,10 +94,14 @@
 {\multicitedelim}
 {\iffieldundef{postnote}{}{\addcomma\space\printfield{postnote}}}
 
-% Fuß und Kopfzeilen
+% ============================================================================
+% HEADERS & FOOTERS
+% ============================================================================
+
 \usepackage{fancyhdr}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0pt}   % Remove header line
+\renewcommand{\footrulewidth}{0pt}   % Remove footer line
+
 \def \footer{
   \begin{center}
     \hfill
@@ -87,35 +114,58 @@
 \fancyfoot{}
 \fancyfoot[R]{\footer}
 
-% Positioniert die Fußnoten fest am unteren Ende der Seite
+% Footer notes positioned at bottom of page
 \usepackage[hang, flushmargin, bottom, multiple]{footmisc}
 \renewcommand{\hangfootparindent}{0.5em}
 \renewcommand{\footnotelayout}{\hspace{0.5em}}
 
-% Tabellen & Abbildungen
-% \usepackage{tabulary}
+% ============================================================================
+% TABLES & FIGURES
+% ============================================================================
+
+% Dynamic column widths for tables
 \usepackage{tabularx}
+
+% Enhanced cell formatting (multi-line cells)
 \usepackage{makecell}
-\usepackage{rotating} % in der Präambel
+
+% Rotated tables and figures
+\usepackage{rotating}
+
+% Professional table formatting
+\usepackage{booktabs}
+
+% Array column specifications
+\usepackage{array}
+
+% Color support for tables
 \usepackage[table]{xcolor}
 
+% Color definitions for template styling
 \definecolor{lightgray}{gray}{0.98}
 \definecolor{darkgrey}{gray}{0.7}
-\definecolor{color_strength}{HTML}{D8EFCB}   % sehr helles Grün
-\definecolor{color_weakness}{HTML}{FFE8CC} % sehr helles Orange
-\definecolor{color_opportunity}{HTML}{D6E5FF}    % sehr helles Blau
-\definecolor{color_threat}{HTML}{FFD6D6}    % sehr helles Rot
+% SWOT analysis colors
+\definecolor{color_strength}{HTML}{D8EFCB}      % Light green
+\definecolor{color_weakness}{HTML}{FFE8CC}      % Light orange
+\definecolor{color_opportunity}{HTML}{D6E5FF}   % Light blue
+\definecolor{color_threat}{HTML}{FFD6D6}        % Light red
 
-\usepackage{float}  % Positioniert Tabellen und Abbildungen
+% Float positioning for tables and figures
+\usepackage{float}
+
+% Graphics inclusion
 \usepackage{graphicx}
 \graphicspath{{./config}{./assets/images/}{./assets/appendix/}}
+
+% Figure and table captions
 \usepackage[labelfont=bf]{caption}
 \captionsetup{belowskip=-9pt}
+
+% Text alignment options (RaggedRight for justified text)
 \usepackage{ragged2e}
 
+% Landscape page orientation (optional, for wide tables)
 \usepackage{pdflscape}
-\usepackage{booktabs}
-\usepackage{array}
 
 % X -> p{} (obenbündig), gut für Listen & Blocksatz
 \newenvironment{TabXtop}{%
@@ -141,21 +191,42 @@
 \usepackage{tcolorbox}
 \tcbset{colback=gray!5,colframe=gray!40!black,boxrule=0.5pt,arc=2mm}
 
-% Aufzählungen
+% ============================================================================
+% LISTS & ENUMERATIONS
+% ============================================================================
+
+% Customizable list formatting
 \usepackage{enumitem}
 \setlist[description]{itemsep=0pt, parsep=0pt, topsep=0pt}
 \setlist{topsep=\parskip, itemsep=0pt, parsep=0pt}
 
-% Code-Blöcke
+% ============================================================================
+% CODE HIGHLIGHTING (Optional)
+% ============================================================================
+
+% Syntax highlighting for code blocks with Pygments
+% Requires: Pygments installation + latexmk with --shell-escape flag
 \usepackage{minted}
 
-% Mathematik
+% ============================================================================
+% MATHEMATICS (Optional)
+% ============================================================================
+
+% Extended math functionality
 \usepackage{mathtools}
+
+% Additional math symbols (infinity, subset, etc.)
 \usepackage{amssymb}
 
-% Anführungszeichen mit \enquote{...}
+% ============================================================================
+% QUOTATIONS & TEXT
+% ============================================================================
+
+% Smart quotes (\enquote{text}) - context-aware quotation marks
 \usepackage{csquotes}
-\newcommand{\epigraph}[2]{ % Befehl für ein einleitendes Zitat
+
+% Custom command for epigraphs (opening quotes)
+\newcommand{\epigraph}[2]{%
   \begin{quote}
     \begin{quote}
       \begin{center}
@@ -166,19 +237,35 @@
   \end{quote}
 }
 
+% ============================================================================
+% PDF INCLUSION (Optional)
+% ============================================================================
+
+% Include external PDF pages (for appendices with separate PDFs)
 \usepackage{pdfpages}
+
+% Helper command for interview references
 \newcommand{\interviewref}[1]{%
   % \hyperref[app:interview#1]{E#1}%
   {E#1}%
 }
 
-% Das Paket hyperref muss als letztes Paket geladen werden. Das Paket setzt Links im PDF-Dokument.
+% ============================================================================
+% HYPERLINKS & PDF PROPERTIES
+% ============================================================================
+
+% PDF links, bookmarks, and metadata
+% IMPORTANT: hyperref MUST be the last package loaded!
 \usepackage[hidelinks, unicode]{hyperref}
 \hypersetup{pdftitle = {\thesisFooterTitle}, pdfauthor = {\name}}
 
-% Normale Schriftart für URLs
+% Normal font for URLs (not typewriter)
 \renewcommand{\UrlFont}{}
 
-% Nummerierung: 2.1, 2.2 usw.
+% ============================================================================
+% NUMBERING & FORMATTING
+% ============================================================================
+
+% Customized list numbering (2.1, 2.2, etc.)
 \renewcommand{\labelenumii}{\theenumii}
 \renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}

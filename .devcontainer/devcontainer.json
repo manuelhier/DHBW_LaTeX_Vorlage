@@ -1,0 +1,63 @@
+{
+  "name": "DHBW LaTeX Template",
+  "dockerFile": "Dockerfile",
+  "context": "..",
+
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly"
+  ],
+
+  "remoteUser": "root",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "James-Yu.latex-workshop",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-german"
+      ],
+      "settings": {
+        "latex-workshop.latex.tools": [
+          {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+              "-xelatex",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-synctex=1",
+              "-biber",
+              "%DOCFILE%"
+            ]
+          }
+        ],
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "latexmk",
+            "tools": ["latexmk"]
+          }
+        ],
+        "latex-workshop.view.pdf.viewer": "tab",
+        "latex-workshop.synctex.afterBuild.enabled": true,
+        "editor.formatOnSave": false,
+        "editor.wordWrap": "on",
+        "[latex]": {
+          "editor.defaultFormatter": null,
+          "editor.formatOnSave": false
+        },
+        "cSpell.language": "de,en",
+        "cSpell.enableFiletypes": [
+          "latex",
+          "bibtex"
+        ]
+      }
+    }
+  },
+
+  "postCreateCommand": "apt-get update && apt-get install -y python3-pygments && latexmk --version",
+
+  "forwardPorts": [],
+  "remoteEnv": {
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/2025/bin/x86_64-linux"
+  }
+}

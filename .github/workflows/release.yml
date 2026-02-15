@@ -1,0 +1,66 @@
+name: Create Release with PDF
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          load: true
+          tags: dhbw-latex:latest
+
+      - name: Build PDF with Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/work \
+            -w /work \
+            dhbw-latex:latest
+
+      - name: Verify PDF was created
+        run: |
+          if [ -f main.pdf ]; then
+            ls -lh main.pdf
+            echo "✅ PDF build successful"
+          else
+            echo "❌ PDF build failed"
+            exit 1
+          fi
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: main.pdf
+          draft: false
+          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+          body: |
+            # DHBW LaTeX Template Release
+
+            ## Build Information
+            - **Build Date:** ${{ github.event.head_commit.timestamp }}
+            - **Commit:** ${{ github.event.head_commit.message }}
+            - **PDF:** [main.pdf](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/main.pdf)
+
+            ## Usage
+            Extract the PDF from the release assets and use it as needed for your submission.
+
+            For source code and template instructions, visit the [repository](https://github.com/${{ github.repository }}).
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  latex-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dhbw-latex:latest
+    container_name: dhbw-latex-build
+    working_dir: /work
+    volumes:
+      # Mount entire project directory for building
+      - .:/work
+    environment:
+      # Optional: LaTeX configuration
+      - LATEXMKOPTS=-interaction=nonstopmode
+    # Remove container after build completes
+    # Change restart policy to 'always' if you want container to persist
+    restart: "no"
+    # Keep container alive briefly for debugging (optional)
+    # stdin_open: true
+    # tty: true

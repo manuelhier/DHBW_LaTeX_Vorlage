@@ -1,0 +1,22 @@
+# VS Code Dev Container for DHBW LaTeX Template
+# Extends latexcodes with development tools for VS Code integration
+
+FROM latexcodes/ubuntu:latest
+
+# Install additional development utilities
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    wget \
+    vim \
+    nano \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /work
+
+# Configure bash as default shell
+ENV SHELL=/bin/bash
+
+# Verify LaTeX installation
+RUN latexmk --version && biber --version

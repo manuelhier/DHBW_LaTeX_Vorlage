@@ -1,0 +1,98 @@
+{
+  // ============================================================================
+  // LATEX WORKSHOP EXTENSION SETTINGS
+  // ============================================================================
+
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+
+  // LaTeX build tools configuration
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-synctex=1",
+        "-biber",
+        "%DOCFILE%"
+      ],
+      "env": {}
+    }
+  ],
+
+  // Default recipe (build configuration)
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (xelatex + biber)",
+      "tools": ["latexmk"]
+    }
+  ],
+
+  // PDF viewer settings
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.zoom": "page-width",
+  "latex-workshop.synctex.afterBuild.enabled": true,
+
+  // Output file directory (build artifacts)
+  "latex-workshop.latex.outDir": "./out",
+
+  // ============================================================================
+  // SPELL CHECK SETTINGS
+  // ============================================================================
+
+  "spellright.language": [
+      "de_DE",
+      "en_US"
+  ],
+  "spellright.documentTypes": [
+      "markdown",
+      "plaintext",
+      "latex",
+      "bibtex"
+  ],
+  "spellright.ignoreRegExps": [
+      "\\\\cite{.*}",
+      "\\\\ref{.*}",
+      "\\\\label{.*}",
+      "\\\\ac{.*}"
+  ],
+
+  // ============================================================================
+  // EDITOR SETTINGS
+  // ============================================================================
+
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": false,
+  "[latex]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false
+  },
+  "[bibtex]": {
+    "editor.defaultFormatter": null
+  },
+
+  // LaTeX-specific settings
+  "latex-workshop.showContextMenu": true,
+  "latex-workshop.showBuildOnSave": true,
+
+  // ============================================================================
+  // KEYBINDINGS (custom shortcuts)
+  // ============================================================================
+
+  // Add to keybindings.json if you want custom shortcuts:
+  // {
+  //   "key": "ctrl+l ctrl+b",
+  //   "command": "latex-workshop.build"
+  // },
+  // {
+  //   "key": "ctrl+l ctrl+v",
+  //   "command": "latex-workshop.view"
+  // },
+  // {
+  //   "key": "ctrl+l ctrl+c",
+  //   "command": "latex-workshop.clean"
+  // }
+}
