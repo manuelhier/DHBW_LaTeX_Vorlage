@@ -56,6 +56,20 @@
   "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
   // Clean subfolder enabled
   "latex-workshop.latex.clean.subfolder.enabled": true,
+  // Clean auxiliary file types after successful build
+  "latex-workshop.latex.clean.fileTypes": [
+    "aux",
+    "bbl",
+    "bcf",
+    "blg",
+    "fdb_latexmk",
+    "fls",
+    "log",
+    "out",
+    "run.xml",
+    "synctex.gz",
+    "xdv"
+  ],
   // Show root file in status bar
   "latex-workshop.latex.build.rootfileInStatus": true,
   // Identify root file by \begin{document}
