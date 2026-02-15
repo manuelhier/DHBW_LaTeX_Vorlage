@@ -16,7 +16,7 @@ This release transforms the template into a production-ready, Docker-enabled, CI
 ### Added
 
 #### Docker & Container Support
-- ✨ **Dockerfile** - Production build using minimal latexcodes base image (~2GB vs 5GB+ for TeX Live)
+- ✨ **Dockerfile** - Production build using TeX Live base image (texlive/texlive:latest, official Docker distribution)
 - ✨ **docker-compose.yml** - Convenient development setup with volume mounts
 - ✨ **.devcontainer/** - VS Code Dev Container integration for one-click setup
 - ✨ **GitHub Actions Workflows**
@@ -43,7 +43,7 @@ This release transforms the template into a production-ready, Docker-enabled, CI
 
 #### Package Management
 - ✅ All packages documented with purpose and usage
-- ✅ Verified latexcodes base image includes all 30+ required packages
+- ✅ Verified TeX Live includes all 30+ required packages
 - ✅ Clear inline comments explaining each package section
 - ✅ Optional packages marked as such (minted, mathtools, amssymb, pdfpages, pdflscape)
 
@@ -64,7 +64,7 @@ This release transforms the template into a production-ready, Docker-enabled, CI
 #### Build System
 - **Primary Tool**: latexmk with XeLaTeX engine
 - **Bibliography**: biber backend with APA style
-- **Base Image**: latexcodes/ubuntu:latest (~2GB optimized)
+- **Base Image**: texlive/texlive:latest (official TeX Live Docker distribution)
 - **Build Time**: 2-3 minutes (local), 3-5 minutes (GitHub Actions)
 
 #### Packages Included (30+)
@@ -122,7 +122,7 @@ docker run --rm -v $(pwd):/work dhbw-latex
 
 - ✅ No breaking changes to document structure
 - ✅ Backward compatible with existing chapters
-- ✅ All dependencies from official sources (latexcodes, latexmk, biber)
+- ✅ All dependencies from official sources (TeX Live, latexmk, biber)
 - ✅ No sensitive data in repository
 
 ### Known Limitations

@@ -15,7 +15,7 @@ all: docker-build
 # Docker build - primary method (no local LaTeX installation needed)
 .PHONY: docker-build
 docker-build:
-	@echo "Building with Docker (latexcodes base image)..."
+	@echo "Building with Docker (texlive base image)..."
 	docker build -t dhbw-latex . && docker run --rm -v $$(pwd):/work dhbw-latex
 
 # Local build - requires latexmk installed locally

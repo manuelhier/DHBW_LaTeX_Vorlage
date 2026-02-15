@@ -1,23 +1,15 @@
-# DHBW LaTeX Template - Production Build
-# Uses minimal latexcodes base image for fast, optimized builds
-# Image size: ~2GB (vs 5GB+ for full TeX Live)
+# DHBW LaTeX Template - Production Build with TeX Live
+# Uses docker.io/texlive/texlive base image (official TeX Live distribution)
+# Image size: ~3GB full TeX Live with all packages preinstalled
 # Recommended for CI/CD, Docker builds, and container-based workflows
 
-FROM latexcodes/ubuntu:latest
+FROM texlive/texlive:latest
 
 # Set working directory for build
 WORKDIR /work
 
-# Verify essential packages are present (biblatex, biber, minted, fontspec)
-# These should be included in latexcodes, but document for clarity
-# Comment: latexcodes provides:
-# - Full TeX Live with common packages
-# - biber (bibliography processor)
-# - Fonts and fontspec support for XeLaTeX
-# - minted (code highlighting) - requires Pygments
-
-# If additional packages needed, uncomment and add below:
-# RUN tlmgr install <package-name>
+# Ensure Pygments is available for minted (code highlighting)
+RUN apt-get update && apt-get install -y python3-pygments && rm -rf /var/lib/apt/lists/*
 
 # Build the PDF using latexmk with XeLaTeX and biber
 # Options:

@@ -239,7 +239,7 @@ Uncomment options in  `config/preamble.tex` for:
 - See [DOCKER.md](DOCKER.md#troubleshooting)
 
 ### Package missing
-- Ensure latexcodes includes all packages (documented in Dockerfile)
+- Ensure TeX Live includes all packages (documented in Dockerfile)
 - Add custom packages via Dockerfile if needed
 
 ---
@@ -275,7 +275,7 @@ This template builds on years of development and refinement:
 
 - **DHBW** for the institutional framework
 - **LaTeX Community** for the excellent tools and packages
-- **TeX Live / latexcodes** maintainers for the LaTeX distributions
+- **TeX Live** maintainers for the LaTeX distributions
 - All contributors who have improved this template
 
 See [LICENSE.txt](LICENSE.txt) for full legal attribution.

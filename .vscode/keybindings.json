@@ -1,0 +1,7 @@
+[
+  {
+    "key": "ctrl+enter",
+    "command": "latex-workshop.build",
+    "when": "resourceLangId == latex"
+  }
+]

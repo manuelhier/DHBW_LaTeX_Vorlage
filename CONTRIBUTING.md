@@ -124,7 +124,7 @@ docker run --rm -v $(pwd):/work dhbw-latex
 **Before adding a package:**
 
 1. ✅ Check if alternative exists (avoid duplicates)
-2. ✅ Verify it's not included in latexcodes already
+2. ✅ Verify it's not included in TeX Live already
 3. ✅ Test that it doesn't conflict with existing packages
 4. ✅ Ensure compilation time doesn't increase significantly
 5. ✅ Document in comments why the package is needed

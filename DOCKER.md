@@ -70,24 +70,24 @@ docker run --rm -v $(pwd):/work dhbw-latex
 
 ## Docker Architecture
 
-### Image: `latexcodes/ubuntu:latest`
+### Image: `texlive/texlive:latest`
 
-This template uses the **latexcodes** base image - a minimal, optimized LaTeX environment.
+This template uses the **texlive/texlive** base image - the official TeX Live Docker distribution.
 
-#### Why latexcodes?
+#### Why TeX Live?
 
 ```
 | LaTeX Distribution | Size     | Build Time | Use Case |
 |-------------------|----------|------------|----------|
-| Full TeX Live    | 5+ GB    | 10+ min    | Overkill  |
+| Full TeX Live    | **3 GB**    | **2-3 min**    | **This** ✓ |
 | BasicTeX (macOS) | 1.5 GB   | 5 min      | macOS only |
-| **latexcodes**   | **2 GB** | **2 min**  | **This** ✓ |
+| Minimal latexcodes   | 2 GB | 2 min      | Alternative |
 | Minimal TeX      | 500 MB   | 1 min      | Fragile   |
 ```
 
-#### What's Included in latexcodes
+#### What's Included in TeX Live
 
-✅ All required packages:
+✅ All official TeX Live packages available:
 - `babel`, `fontspec`, `geometry` (document basics)
 - `biblatex`, `biber` (bibliography)
 - `minted` (code highlighting)
@@ -98,10 +98,10 @@ This template uses the **latexcodes** base image - a minimal, optimized LaTeX en
 
 ### Extended Dockerfile
 
-Our `Dockerfile` extends latexcodes minimally:
+Our `Dockerfile` extends TeX Live minimally:
 
 ```dockerfile
-FROM latexcodes/ubuntu:latest
+FROM texlive/texlive:latest
 WORKDIR /work
 ENTRYPOINT ["latexmk", "-xelatex", "-biber", "-pdf", "main.tex"]
 ```
@@ -117,7 +117,7 @@ ENTRYPOINT ["latexmk", "-xelatex", "-biber", "-pdf", "main.tex"]
 For VS Code Dev Container, we add development tools:
 
 ```dockerfile
-FROM latexcodes/ubuntu:latest
+FROM texlive/texlive:latest
 RUN apt-get update && apt-get install -y \
     git curl wget vim nano  # Dev tools
 ```
@@ -199,7 +199,7 @@ docker run --rm -v $(pwd):/work dhbw-latex \
 If a required package is missing, extend the Dockerfile:
 
 ```dockerfile
-FROM latexcodes/ubuntu:latest
+FROM texlive/texlive:latest
 
 # Add package
 RUN tlmgr install <package-name>
@@ -266,7 +266,7 @@ docker run -v latex-build:/work dhbw-latex
 Docker caches layers. First build slowest:
 
 ```
-FROM latexcodes/ubuntu:latest      ← Cached (fast)
+FROM texlive/texlive:latest      ← Cached (fast)
 RUN tlmgr install custom           ← Cached if not modified
 WORKDIR /work                      ← Cached (instant)
 ENTRYPOINT ...                     ← Cached
@@ -277,7 +277,7 @@ ENTRYPOINT ...                     ← Cached
 ### 2. Multi-stage Builds (Advanced)
 
 ```dockerfile
-FROM latexcodes/ubuntu:latest AS compiler
+FROM texlive/texlive:latest AS compiler
 WORKDIR /work
 RUN latexmk -xelatex -biber -pdf main.tex
 
@@ -510,7 +510,7 @@ act
 
 4. ✅ **Pin versions in production**
    ```dockerfile
-   FROM latexcodes:ubuntu:latest  # Or specific version hash
+   FROM texlive/texlive:latest  # Or specific version hash
    ```
 
 5. ✅ **Use Dev Container for development**
@@ -523,7 +523,7 @@ act
 ## Resources
 
 - [Docker Docs](https://docs.docker.com/)
-- [latexcodes Registry](https://hub.docker.com/r/latexcodes/ubuntu)
+- [TeX Live Docker Image](https://hub.docker.com/r/texlive/texlive)
 - [GitHub Actions Docs](https://docs.github.com/en/actions)
 - [LaTeX Workshop (VS Code)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
 

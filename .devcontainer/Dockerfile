@@ -1,7 +1,7 @@
 # VS Code Dev Container for DHBW LaTeX Template
-# Extends latexcodes with development tools for VS Code integration
+# Extends TeX Live with development tools for VS Code integration
 
-FROM latexcodes/ubuntu:latest
+FROM texlive/texlive:latest
 
 # Install additional development utilities
 RUN apt-get update && apt-get install -y \
