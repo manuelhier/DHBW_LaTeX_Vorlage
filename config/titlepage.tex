@@ -1,72 +1,63 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 2020-06-20
-%% Descr:       Titelseite
-%% Author:      Vorlage erstellt von Daniel Spitzer an der DHBW Lörrach 
-%% Angepasst:   Manuel Rettig
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page layout and content
 
 \begin{titlepage}
-    \newgeometry{left=2.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot}
+  \newgeometry{left=2.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot}
 
+  \centering
+  \vspace*{-3cm}
+
+  % DHBW and company logos
+  \begin{figure}[h!]
     \centering
-    \vspace*{-3cm}
-
-    % Logo DHBW und ggf. Partnerunternehmen
-    \begin{figure}[h!]
-        \centering
-        % \vspace{1cm}
-        \includegraphics[width=6cm]{config/logo_dhbw.pdf}
-        \ifseminararbeit
-        \else
-            \hspace{1cm}
-            \includegraphics[width=6cm]{config/logo_united-internet.pdf}
-        \fi
-        \vspace{0.5cm}
-    \end{figure}
-
-    % Fakultät & Studiengang
-    \large \textbf{Fakultät Wirtschaft} \\
-    \vspace{0.5cm}
-    \large \textbf{Studiengang \courseOfStudies} \\
-
-    % Titel der Arbeit
-    \vfill  % \vspace{2.5cm}
-    \LARGE \textbf {\thesisTitle} \\
-
-    % Modul & Prüfungstyp
-    \vfill  % \vspace{2.5cm}
-    \Large \textbf{\thesisType} \\
+    \includegraphics[width=6cm]{config/logo_dhbw.pdf}
     \ifseminararbeit
-        \Large im Modul \\
-        \textbf{\module} \\
-        \vspace{0.3cm}
     \else
-        \vspace{1cm}
+      \hspace{1cm}
+      \includegraphics[width=6cm]{config/logo_united-internet.pdf}
     \fi
-    \normalsize Im Rahmen der Prüfung zum \degree \\
+    \vspace{0.5cm}
+  \end{figure}
 
-    % Sperrvermerk
-    \ifblockingnotice
-        \vfill
-        \Large \textcolor{red}{Sperrvermerk}\\
-    \fi
+  % Faculty and course of studies
+  \large \textbf{Fakultät Wirtschaft} \\
+  \vspace{0.5cm}
+  \large \textbf{Studiengang \courseOfStudies} \\
 
-    % Informationen
+  % Thesis title
+  \vfill
+  \LARGE \textbf{\thesisTitle} \\
+
+  % Type and module
+  \vfill
+  \Large \textbf{\thesisType} \\
+  \ifseminararbeit
+    \Large im Modul \\
+    \textbf{\module} \\
+    \vspace{0.3cm}
+  \else
+    \vspace{1cm}
+  \fi
+  \normalsize Im Rahmen der Prüfung zum \degree \\
+
+  % Blocking notice indicator
+  \ifblockingnotice
     \vfill
-    \normalsize
-    \begin{tabular}{l l}
-        \textbf{Verfasser:}                   & \name              \\
-        \textbf{Kurs:}                        & \course            \\
-        \ifseminararbeit
-        \textbf{Dozentin:}                    & \universityAdvisor \\
-        \else
-        \textbf{Partnerunternehmen:}          & \company           \\
-            % \textbf{Betriebliche Betreuung:} & \corporateAdvisor  \\
-        % \textbf{Wissenschaftliche Betreuung:} & \universityAdvisor \\
-        \fi
-        \textbf{Abgabedatum:}                 & \submissionDate    \\
-    \end{tabular}
+    \Large \textcolor{red}{Sperrvermerk}\\
+  \fi
 
-    \restoregeometry
+  % Author and submission information
+  \vfill
+  \normalsize
+  \begin{tabular}{l l}
+    \textbf{Verfasser:}           & \name              \\
+    \textbf{Kurs:}                & \course            \\
+    \ifseminararbeit
+      \textbf{Dozentin:}          & \universityAdvisor \\
+    \else
+      \textbf{Partnerunternehmen:} & \company          \\
+    \fi
+    \textbf{Abgabedatum:}         & \submissionDate    \\
+  \end{tabular}
+
+  \restoregeometry
 \end{titlepage}
-

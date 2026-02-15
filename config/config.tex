@@ -1,61 +1,68 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 2020-06-20
-%% Descr:       Variablen für die Projektarbeit / Bachelorarbeit festlegen
-%% Author:      Vorlage erstellt von Daniel Spitzer an der DHBW Lörrach 
-%% Angepasst:   Katja Wengler, ZWI, DHBW Karlsruhe
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% =============================================================================
+% USER CONFIGURATION
+% =============================================================================
+% Edit the variables below to customize your document
 
-% Wenn es sich um eine Seminararbeit handelt,
-% muss der folgende Befehl durch diesen ersetzt werden:
-% \seminararbeittrue
+% =============================================================================
+% DOCUMENT TYPE SETTINGS
+% =============================================================================
+
+% Set to \seminararbeittrue for seminar papers
 \seminararbeitfalse
 
-% Wenn die Arbeit keinen Sperrvermerk hat,
-% muss der folgende Befehl durch diesen ersetzt werden:
+% Set to \blockingnoticetrue to include confidentiality notice
 \blockingnoticefalse
-%\blockingnoticetrue
 
-% Studiengang
-\def \courseOfStudies {<Studiengang Hallo>}
+% =============================================================================
+% THESIS/PAPER METADATA
+% =============================================================================
 
-% Titel
+% Course of studies
+\def \courseOfStudies {<Studiengang>}
+
+% Thesis title
 \def \thesisTitle {<Titel>}
-\def \titleFontSize {18} % Schriftgröße des Titels auf dem Deckblatt
+\def \titleFontSize {18}              % Title font size on cover
 
-% Kurztitel für Fußzeile
+% Short title for footer
 \def \thesisFooterTitle {}
-\def \footerFontSize {10} % Schriftgröße in der Fußzeile
+\def \footerFontSize {10}              % Footer font size
 
-\def \thesisType {<Art der Arbeit>}             % z.B. Projektarbeit, Bachelorarbeit
-\def \module {<Modulbezeichnug>}                % Modulbezeichnung
-\def \degree {Bachelor of Science (B. Sc.)}     % Bildungsabschluss
+% Thesis type and degree
+\def \thesisType {<Art der Arbeit>}    % e.g., Projektarbeit, Bachelorarbeit
+\def \module {<Modulbezeichnug>}       % Module name
+\def \degree {Bachelor of Science (B. Sc.)}
 
-% Deckblatt
-\def \name {<Name>} % Name des Verfassers
-\def \course {<Kurs>} % Kurs
-\def \universityAdvisor {<Name>} % Wissenschaftlicher Betreuer / Dozentin bzw. Dozent
-\def \submissionDate {<Abgabedatum>} % Abgabedatum
+% =============================================================================
+% AUTHOR & SUBMISSION INFORMATION
+% =============================================================================
 
-% Partnernunternehmen
+% Author information
+\def \name {<Name>}
+\def \course {<Kurs>}
+\def \universityAdvisor {<Name>}       % University advisor / instructor
+\def \submissionDate {<Abgabedatum>}
+
+% Company/partner information
 \def \company {<Partnernunternehmen>}
 \def \corporateAdvisor {<Name>}
 
-% Ort und Datum für die Ehrenwörtliche Erklärung
+% =============================================================================
+% DECLARATION & RELEASE DATES
+% =============================================================================
+
+% Declaration of independence dates
 \def \declarationLocation {...}
 \def \declarationDate {...}
 
-% Ort und Datum für die Freigabe der Arbeit
+% Release/approval dates (if applicable)
 \def \releaseLocation {...}
 \def \releaseDate {...}
 
-% Sperrvermerk
-% \def \blockingNoticeAuthorDate {DD. Monat YYYY}
-% \def \blockingNoticeCompanyDate {DD. Monat YYYY}
-% \def \companyAdress {Hauptstraße 1 \\ 76133 Karlsruhe \\ Deutschland}
-% \def \companyPhone {0721 1234567}
-% \def \companyEmail {info@musterfrau-ag.de}
+% =============================================================================
+% SECTION HEADINGS (customizable for language/preference)
+% =============================================================================
 
-% Bei Bedarf können die Überschriften geändert werden
 \def \declarationHeading{Selbstständigkeitserklärung}
 \def \thesisSizeHeading{Hinweis zum Umfang der Arbeit}
 \def \releaseHeading{Freigabe der Arbeit}
